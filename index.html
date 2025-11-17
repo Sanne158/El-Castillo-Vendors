@@ -52,6 +52,11 @@
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        #subcategoryFilter {
+            display: none;
         }
         
         .vendor {
@@ -100,6 +105,9 @@
         <select id="categoryFilter" onchange="filterVendors()">
             <option value="all">All Categories</option>
         </select>
+        <select id="subcategoryFilter" onchange="filterVendors()">
+            <option value="all">All Subcategories</option>
+        </select>
     </div>
     
     <div class="count" id="count"></div>
@@ -107,58 +115,102 @@
 
     <script>
         let currentLang = 'en';
+        let selectedCategory = 'all';
 
         const translations = {
             en: {
                 title: "El Castillo Vendors",
                 allCategories: "All Categories",
+                allSubcategories: "All Subcategories",
                 vendors: "vendors",
                 vendor: "vendor"
             },
             es: {
                 title: "Vendedores del Castillo",
                 allCategories: "Todas las Categorías",
+                allSubcategories: "Todas las Subcategorías",
                 vendors: "vendedores",
                 vendor: "vendedor"
             }
         };
 
-        // Replace this with your vendor data
         const vendors = [
             {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
-                subcategory: { en: "Diary", es: "Lácteos" },
+                subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
                 product: { en: "Cheese & Milk", es: "Queso y Leche" },
                 name: "Reina",
                 phone: "50683652239"
             },
  	    {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
-                subcategory: { en: "Diary", es: "Lácteos" },
+                subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
                 product: { en: "Yoghurt", es: "Yogurt" },
                 name: "Anna",
                 phone: "50687286113"
             },
   	    {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
-                subcategory: { en: "Alcohol", es: "Licor" },
+                subcategory: { en: "Beverages", es: "Bebidas" },
                 product: { en: "Local Wine Chicha", es: "Chicha" },
                 name: "Tomas",
                 phone: "50685337902"
             },
+			 {
+                category: { en: "Food & Beverages", es: "Comida y Bebidas" },
+                subcategory: { en: "Beverages", es: "Bebidas" },
+                product: { en: "Organic tea", es: "Tes orgánicos" },
+                name: "Lena",
+                phone: "50683261696"
+            },
   	    {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
-                subcategory: { en: "Meat", es: "Carne" },
-                product: { en: "Chicken", es: "Pollo" },
+                subcategory: { en: "Meat & Poultry", es: "Carnes y Aves" },
+                product: { en: "Chicken & Chicken dinners", es: "Pollo y Cena con pollo" },
                 name: "Ana",
                 phone: "50688624019"
             },
+			{
+                category: { en: "Food & Beverages", es: "Comida y Bebidas" },
+                subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
+                product: { en: "Eggs", es: "Huevos" },
+                name: "Lena",
+                phone: "50683261696"
+            },
+			{
+                category: { en: "Food & Beverages", es: "Comida y Bebidas" },
+                subcategory: { en: "Baked goods", es: "Repostería" },
+                product: { en: "Sweet cakes", es: "Pasteles dulces" },
+                name: "Mayra",
+                phone: "50688385364"
+            },
+			{
+                category: { en: "Food & Beverages", es: "Comida y Bebidas" },
+                subcategory: { en: "Produce", es: "Productos frescos" },
+                product: { en: "Oyster mushrooms", es: "Hongos tipo Ostra" },
+                name: "Michael",
+                phone: "50687090777"
+            },
   	    {
-                category: { en: "Natural products", es: "Productos naturales" },
-                subcategory: { en: "Skincare", es: "Cuidado de piel" },
+                category: { en: "Peronal care", es: "Cuidado personal" },
+                subcategory: { en: "Hygiene", es: "Higiene" },
                 product: { en: "Soap", es: "Jabón" },
                 name: "Hannah",
                 phone: "50688763750"
+            },
+			{
+                category: { en: "Personal care", es: "Cuidado personal" },
+                subcategory: { en: "Natural remedies", es: "Remedios Naturales" },
+                product: { en: "Insect repellent", es: "Repelentes naturales" },
+                name: "Lena",
+                phone: "50683261696"
+            },
+			{
+                category: { en: "Personal care", es: "Cuidado personal" },
+                subcategory: { en: "Hygiene", es: "Higiene" },
+                product: { en: "Toothpaste", es: "Pasta de dientes" },
+                name: "Lena",
+                phone: "50683261696"
             },
   	    {
                 category: { en: "Services", es: "Servicios" },
@@ -182,14 +234,14 @@
                 phone: "50689353561"
             },
   	    {
-                category: { en: "Souvenirs", es: "Recuerdos" },
+                category: { en: "Handmade crafts", es: "Artesanías" },
                 subcategory: { en: "Jewelry", es: "Joyas" },
                 product: { en: "Rings from cutlery", es: "Anillos de cubiertos" },
                 name: "Matthijs",
                 phone: "31624489089"
             },
   	    {
-                category: { en: "Souvenirs", es: "Recuerdos" },
+                category: { en: "Handmade crafts", es: "Artesanías" },
                 subcategory: { en: "Jewelry", es: "Joyas" },
                 product: { en: "Rope bracelets & Necklaces", es: "Pulseras y Collares de soga" },
                 name: "Yuritza",
@@ -200,16 +252,13 @@
         function switchLanguage(lang) {
             currentLang = lang;
             
-            // Update active tab
             document.querySelectorAll('.lang-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             event.target.classList.add('active');
             
-            // Update title
             document.getElementById('title').textContent = translations[lang].title;
             
-            // Rebuild category filter
             buildCategoryFilter();
             filterVendors();
         }
@@ -227,11 +276,49 @@
             });
         }
 
+        function buildSubcategoryFilter(category) {
+            const subcategoryFilter = document.getElementById('subcategoryFilter');
+            
+            if (category === 'all') {
+                subcategoryFilter.style.display = 'none';
+                return;
+            }
+            
+            const filteredVendors = vendors.filter(v => v.category[currentLang] === category);
+            const subcategories = [...new Set(filteredVendors.map(v => v.subcategory[currentLang]))].sort();
+            
+            subcategoryFilter.innerHTML = `<option value="all">${translations[currentLang].allSubcategories}</option>`;
+            subcategories.forEach(subcat => {
+                const option = document.createElement('option');
+                option.value = subcat;
+                option.textContent = subcat;
+                subcategoryFilter.appendChild(option);
+            });
+            
+            subcategoryFilter.style.display = 'block';
+        }
+
         function filterVendors() {
-            const selected = document.getElementById('categoryFilter').value;
-            const filtered = selected === 'all' 
-                ? vendors 
-                : vendors.filter(v => v.category[currentLang] === selected);
+            const categoryValue = document.getElementById('categoryFilter').value;
+            const subcategoryValue = document.getElementById('subcategoryFilter').value;
+            
+            // If category changed, rebuild subcategory filter and reset it
+            if (categoryValue !== selectedCategory) {
+                selectedCategory = categoryValue;
+                buildSubcategoryFilter(categoryValue);
+            }
+            
+            let filtered = vendors;
+            
+            // Filter by category
+            if (categoryValue !== 'all') {
+                filtered = filtered.filter(v => v.category[currentLang] === categoryValue);
+            }
+            
+            // Filter by subcategory
+            if (subcategoryValue !== 'all' && categoryValue !== 'all') {
+                filtered = filtered.filter(v => v.subcategory[currentLang] === subcategoryValue);
+            }
             
             const countText = filtered.length === 1 
                 ? `1 ${translations[currentLang].vendor}`
@@ -252,4 +339,5 @@
         filterVendors();
     </script>
 </body>
+</html>
 </html>
