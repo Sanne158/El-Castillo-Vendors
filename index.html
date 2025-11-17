@@ -44,7 +44,20 @@
             padding: 0 20px 15px 20px;
             color: #666;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+        
+        .subtitle-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .subtitle-text {
+            text-align: justify;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .filters {
@@ -127,8 +140,9 @@
 </head>
 <body>
     <h1 id="title">El Castillo Vendors</h1>
-    <div class="subtitle" id="subtitle">
-        <!-- ADD YOUR ENGLISH DESCRIPTION HERE -->
+    <div class="subtitle">
+        <div class="subtitle-title" id="subtitleTitle"></div>
+        <div class="subtitle-text" id="subtitleText"></div>
     </div>
     
     <div class="language-tabs">
@@ -155,7 +169,7 @@
         const translations = {
             en: {
                 title: "El Castillo Vendors",
-                subtitle: "Where does your money go? El Castillo was built by the hands that live and dream here. Every local business is a piece of someone's soul. Your money matters, a lot. Depending on where you spend it. When you shop at a chain store, most of it leaves immediately. To corporate offices, shareholders, distant banks. But when you shop at a local business, your money stays right here. It pays bakers, chees makers, cashiers, helps entrepreneurs cover their rent. Keeps our town's businesses open. That money circulates from hand to hand, strengthening the entire community.",
+                subtitle: "Buy locally",
                 allCategories: "All Categories",
                 allSubcategories: "All Subcategories",
                 vendors: "vendors",
@@ -163,7 +177,7 @@
             },
             es: {
                 title: "Vendedores del Castillo",
-                subtitle: "A dónde va tu dinero? El Castillo fue construido por los manos que viven y sueñan aquí. Cada negocio local es un pedazo del alma de alguien. Tu dinero importa, y mucho. Dependiendo de dónde lo gastes. Cuando compras en una cadena, la mayor parte se va inmediato. A oficinas corporativas, accionistas, a bancos lejanos. Pero cuando compras en un negocio local, su dinero se queda aquí mismo. Paga al cajero de la panadería, ayuda a los emprendedores a cubrir la renta, mantiene abierto los negocios del pueblo. Ese dinero circula de mano en mano fortaleciendo a toda la comunidad.",
+                subtitle: "Compra local",
                 allCategories: "Todas las Categorías",
                 allSubcategories: "Todas las Subcategorías",
                 vendors: "vendedores",
@@ -260,7 +274,7 @@
                 category: { en: "Services", es: "Servicios" },
                 subcategory: { en: "Sewing", es: "Costura" },
                 product: { en: "Clothing & Repairs", es: "Ropa y Reparaciones" },
-                name: "Catia",
+                name: "Katia",
                 phone: "+506 8875 2424"
             },
 	    {
@@ -309,7 +323,8 @@
             event.target.classList.add('active');
             
             document.getElementById('title').textContent = translations[lang].title;
-            document.getElementById('subtitle').textContent = translations[lang].subtitle;
+            document.getElementById('subtitleTitle').textContent = translations[lang].subtitleTitle;
+            document.getElementById('subtitleText').textContent = translations[lang].subtitleText;
             
             buildCategoryFilter();
             filterVendors();
@@ -401,6 +416,5 @@
     </script>
 </body>
 </html>
-
 
 
