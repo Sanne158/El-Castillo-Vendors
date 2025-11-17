@@ -48,10 +48,10 @@
         }
         
         .subtitle-title {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #333;
+            font-weight: normal;
+            font-size: 15px;
+            margin-bottom: 2px;
+            color: #555;
         }
         
         .subtitle-text {
@@ -166,26 +166,27 @@
         let currentLang = 'en';
         let selectedCategory = 'all';
 
-       const translations = {
-    en: {
-        title: "El Castillo Vendors",
-        subtitleTitle: "Where does your money go?",
-        subtitleText: "El Castillo was built by the hands that live and dream here. Every local business is a piece of someone's soul. Your money matters, a lot. Depending on where you spend it. When you shop at a chain store, most of it leaves immediately. To corporate offices, shareholders, distant banks. But when you shop at a local business, your money stays right here. It pays bakers, cheese makers, cashiers, helps entrepreneurs cover their rent. Keeps our town's businesses open. That money circulates from hand to hand, strengthening the entire community.",
-        allCategories: "All Categories",
-        allSubcategories: "All Subcategories",
-        vendors: "vendors",
-        vendor: "vendor"
-    },
-    es: {
-        title: "Vendedores del Castillo",
-        subtitleTitle: "¿A dónde va tu dinero?",
-        subtitleText: "El Castillo fue construido por los manos que viven y sueñan aquí. Cada negocio local es un pedazo del alma de alguien. Tu dinero importa, y mucho. Dependiendo de dónde lo gastes. Cuando compras en una cadena, la mayor parte se va inmediato. A oficinas corporativas, accionistas, a bancos lejanos. Pero cuando compras en un negocio local, su dinero se queda aquí mismo. Paga al cajero de la panadería, ayuda a los emprendedores a cubrir la renta, mantiene abierto los negocios del pueblo. Ese dinero circula de mano en mano fortaleciendo a toda la comunidad.",
-        allCategories: "Todas las Categorías",
-        allSubcategories: "Todas las Subcategorías",
-        vendors: "vendedores",
-        vendor: "vendedor"
-    }
-};
+        const translations = {
+            en: {
+                title: "El Castillo Vendors",
+                subtitleTitle: "Where does your money go?",
+                subtitleText: "El Castillo was built by the hands that live and dream here. Every local business is a piece of someone's soul. Your money matters, a lot. Depending on where you spend it. When you shop at a chain store, most of it leaves immediately. To corporate offices, shareholders, distant banks. But when you shop at a local business, your money stays right here. It pays bakers, cheese makers, cashiers, helps entrepreneurs cover their rent. Keeps our town's businesses open. That money circulates from hand to hand, strengthening the entire community.",
+                allCategories: "All Categories",
+                allSubcategories: "All Subcategories",
+                vendors: "vendors",
+                vendor: "vendor"
+            },
+            es: {
+                title: "Vendedores del Castillo",
+                subtitleTitle: "¿A dónde va tu dinero?",
+                subtitleText: "El Castillo fue construido por los manos que viven y sueñan aquí. Cada negocio local es un pedazo del alma de alguien. Tu dinero importa, y mucho. Dependiendo de dónde lo gastes. Cuando compras en una cadena, la mayor parte se va inmediato. A oficinas corporativas, accionistas, a bancos lejanos. Pero cuando compras en un negocio local, su dinero se queda aquí mismo. Paga al cajero de la panadería, ayuda a los emprendedores a cubrir la renta, mantiene abierto los negocios del pueblo. Ese dinero circula de mano en mano fortaleciendo a toda la comunidad.",
+                allCategories: "Todas las Categorías",
+                allSubcategories: "Todas las Subcategorías",
+                vendors: "vendedores",
+                vendor: "vendedor"
+            }
+        };
+
         const vendors = [
             {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
@@ -194,119 +195,119 @@
                 name: "Reina",
                 phone: "+506 8365 2239"
             },
-			{
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
                 product: { en: "Cheese", es: "Queso" },
                 name: "Reina",
                 phone: "+506 8365 2239"
             },
- 	    {
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
                 product: { en: "Yoghurt", es: "Yogurt" },
                 name: "Anna",
                 phone: "+506 8728 6113"
             },
-  	    {
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Beverages", es: "Bebidas" },
                 product: { en: "Local Wine Chicha", es: "Chicha" },
                 name: "Tomas",
                 phone: "+506 8533 7902"
             },
-			 {
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Beverages", es: "Bebidas" },
                 product: { en: "Organic tea", es: "Tes orgánicos" },
                 name: "Lena",
                 phone: "+506 8326 1696"
             },
-  	    {
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Meat & Poultry", es: "Carnes y Aves" },
                 product: { en: "Chicken & Chicken dinners", es: "Pollo y Cena con pollo" },
                 name: "Ana",
                 phone: "+506 8862 4019"
             },
-			{
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
                 product: { en: "Eggs", es: "Huevos" },
                 name: "Lena",
                 phone: "+506 8326 1696"
             },
-			{
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Baked goods", es: "Repostería" },
                 product: { en: "Sweet cakes", es: "Pasteles dulces" },
                 name: "Mayra",
                 phone: "+506 8838 5364"
             },
-			{
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Produce", es: "Productos frescos" },
                 product: { en: "Oyster mushrooms", es: "Hongos tipo Ostra" },
                 name: "Michael",
                 phone: "+506 8709 0777"
             },
-  	    {
+            {
                 category: { en: "Personal care", es: "Cuidado personal" },
                 subcategory: { en: "Hygiene", es: "Higiene" },
                 product: { en: "Soap", es: "Jabón" },
                 name: "Hannah",
                 phone: "+506 8876 3750"
             },
-			{
+            {
                 category: { en: "Personal care", es: "Cuidado personal" },
                 subcategory: { en: "Natural remedies", es: "Remedios Naturales" },
                 product: { en: "Insect repellent", es: "Repelentes naturales" },
                 name: "Lena",
                 phone: "+506 8326 1696"
             },
-			{
+            {
                 category: { en: "Personal care", es: "Cuidado personal" },
                 subcategory: { en: "Hygiene", es: "Higiene" },
                 product: { en: "Toothpaste", es: "Pasta de dientes" },
                 name: "Lena",
                 phone: "+506 8326 1696"
             },
-  	    {
+            {
                 category: { en: "Services", es: "Servicios" },
                 subcategory: { en: "Sewing", es: "Costura" },
                 product: { en: "Clothing & Repairs", es: "Ropa y Reparaciones" },
                 name: "Katia",
                 phone: "+506 8875 2424"
             },
-	    {
+            {
                 category: { en: "Services", es: "Servicios" },
                 subcategory: { en: "Mechanic", es: "Mecánico" },
                 product: { en: "Vehicle repair", es: "Reparación de vehículos" },
                 name: "Eduardo",
                 phone: "+506 8927 5198"
             },
- 	    {
+            {
                 category: { en: "Services", es: "Servicios" },
                 subcategory: { en: "Mechanic", es: "Mecánico" },
                 product: { en: "Bicycle & Motorcycle repair", es: "Reparación de bici y moto" },
                 name: "Jose",
                 phone: "+506 8935 3561"
             },
-			{
+            {
                 category: { en: "Services", es: "Servicios" },
                 subcategory: { en: "Cleaning", es: "Limpieza" },
                 product: { en: "Washing of Vehicles", es: "Lavado de vehículos" },
                 name: "Josuè",
                 phone: "+506 8646 2590"
             },
-  	    {
+            {
                 category: { en: "Handmade crafts", es: "Artesanías" },
                 subcategory: { en: "Jewelry", es: "Joyas" },
                 product: { en: "Rings from cutlery", es: "Anillos de cubiertos" },
                 name: "Matthijs",
-                phone: "+316 2448 9089"
+                phone: "+31 6 2448 9089"
             },
-  	    {
+            {
                 category: { en: "Handmade crafts", es: "Artesanías" },
                 subcategory: { en: "Jewelry", es: "Joyas" },
                 product: { en: "Rope bracelets & Necklaces", es: "Pulseras y Collares de soga" },
