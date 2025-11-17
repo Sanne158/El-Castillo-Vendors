@@ -35,8 +35,16 @@
         }
         
         .lang-tab.active {
-            border-bottom: 3px solid #4CAF50;
+            border-bottom: 3px solid #D946EF;
             font-weight: bold;
+        }
+        
+        .subtitle {
+            text-align: center;
+            padding: 0 20px 15px 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         .filters {
@@ -64,7 +72,7 @@
             padding: 12px;
             margin-bottom: 8px;
             border-radius: 6px;
-            border-left: 4px solid #4CAF50;
+            border-left: 4px solid #D946EF;
         }
         
         .vendor-name {
@@ -79,10 +87,34 @@
             margin: 2px 0;
         }
         
+        .vendor-category {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+        
+        .vendor-product {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        
+        .vendor-contact {
+            font-size: 14px;
+            color: #666;
+            margin-top: 6px;
+        }
+        
         .whatsapp {
             color: #25D366;
             text-decoration: none;
             font-weight: bold;
+        }
+        
+        .phone {
+            color: #666;
+            margin-right: 12px;
         }
         
         .count {
@@ -95,6 +127,9 @@
 </head>
 <body>
     <h1 id="title">El Castillo Vendors</h1>
+    <div class="subtitle" id="subtitle">
+        <!-- ADD YOUR ENGLISH DESCRIPTION HERE -->
+    </div>
     
     <div class="language-tabs">
         <button class="lang-tab active" onclick="switchLanguage('en')">English</button>
@@ -120,6 +155,7 @@
         const translations = {
             en: {
                 title: "El Castillo Vendors",
+                subtitle: "Buy locally",
                 allCategories: "All Categories",
                 allSubcategories: "All Subcategories",
                 vendors: "vendors",
@@ -127,6 +163,14 @@
             },
             es: {
                 title: "Vendedores del Castillo",
+                subtitle: "A dónde va tu dinero? 
+El Castillo fue construido por los manos que viven y sueñan aquí. 
+Cada negocio local es un pedazo del alma de alguien. 
+Tu dinero importa, y mucho. Dependiendo de dónde lo gastes. 
+Cuando compras en una cadena, la mayor parte se va inmediato. 
+	A oficinas corporativas, accionistas, a bancos lejanos. Pero cuando compras en un negocio local, su dinero se queda aquí mismo. 
+	Paga al cajero de la panadería, ayuda a los emprendedores a cubrir la renta, mantiene abierto los negocios del pueblo. 
+	Ese dinero circula de mano en mano fortaleciendo a toda la comunidad.",
                 allCategories: "Todas las Categorías",
                 allSubcategories: "Todas las Subcategorías",
                 vendors: "vendedores",
@@ -138,7 +182,14 @@
             {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
-                product: { en: "Cheese & Milk", es: "Queso y Leche" },
+                product: { en: "Milk", es: "Leche" },
+                name: "Reina",
+                phone: "50683652239"
+            },
+			{
+                category: { en: "Food & Beverages", es: "Comida y Bebidas" },
+                subcategory: { en: "Diary & Eggs", es: "Lácteos y Huevos" },
+                product: { en: "Cheese", es: "Queso" },
                 name: "Reina",
                 phone: "50683652239"
             },
@@ -265,6 +316,7 @@
             event.target.classList.add('active');
             
             document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('subtitle').textContent = translations[lang].subtitle;
             
             buildCategoryFilter();
             filterVendors();
@@ -332,13 +384,22 @@
                 : `${filtered.length} ${translations[currentLang].vendors}`;
             document.getElementById('count').textContent = countText;
             
-            document.getElementById('vendorList').innerHTML = filtered.map(v => `
+            document.getElementById('vendorList').innerHTML = filtered.map(v => {
+                // Format phone for WhatsApp (remove spaces and keep +)
+                const whatsappPhone = v.phone.replace(/\s/g, '');
+                
+                return `
                 <div class="vendor">
-                    <div class="vendor-name">${v.name}</div>
-                    <div class="vendor-detail">${v.subcategory[currentLang]} • ${v.product[currentLang]}</div>
-                    <div class="vendor-detail">💬 <a href="https://wa.me/${v.phone}" class="whatsapp">WhatsApp</a></div>
+                    <div class="vendor-name">${v.product[currentLang]}</div>
+                    <div class="vendor-category">${v.subcategory[currentLang]}</div>
+                    <div class="vendor-product">${v.name}</div>
+                    <div class="vendor-contact">
+                        <span class="phone">📞 ${v.phone}</span>
+                        <a href="https://wa.me/${whatsappPhone}" class="whatsapp">💬 WhatsApp</a>
+                    </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // Initialize
@@ -347,7 +408,3 @@
     </script>
 </body>
 </html>
-</html>
-
-
-
