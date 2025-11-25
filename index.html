@@ -138,8 +138,27 @@
             margin: 10px 0;
             font-size: 14px;
         }
+        .disclaimer {
+    background: rgba(217, 70, 239, 0.1);
+    border: 1px solid rgba(217, 70, 239, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 10px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+.disclaimer-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
     </style>
 </head>
+<div class="disclaimer">
+    <div class="disclaimer-title" id="disclaimerTitle">Disclaimer:</div>
+    <div id="disclaimerText"></div>
+</div>
 <body>
     <h1 id="title">Crafted in El Castillo</h1>
     <div class="subtitle">
@@ -177,6 +196,8 @@
                 allSubcategories: "All Subcategories",
                 vendors: "vendors",
                 vendor: "vendor"
+                disclaimerTitle: "Disclaimer:",
+                disclaimerText: "This directory is provided as a community resource to connect residents with local micro-enterprises. We do not verify business licenses, permits, or legal compliance—that is the sole responsibility of each vendor. By using this directory, you acknowledge that all transactions are between you and the vendor directly. This platform is intended for small-scale local businesses and does not include tours, experiences, or services that are widely available (such as taxi services). We are not responsible for the quality, legality, or outcomes of any products or services offered by listed vendors."
             },
             es: {
                 title: "Elaborado en El Castillo",
@@ -186,6 +207,8 @@
                 allSubcategories: "Todas las Subcategorías",
                 vendors: "vendedores",
                 vendor: "vendedor"
+                disclaimerTitle: "Descargo de responsabilidad:",
+                disclaimerText: "Este directorio se proporciona como un recurso comunitario para conectar a los residentes con micro-empresas locales. No verificamos licencias comerciales, permisos o cumplimiento legal—esa es la responsabilidad exclusiva de cada vendedor. Al usar este directorio, usted reconoce que todas las transacciones son entre usted y el vendedor directamente. Esta plataforma está destinada a pequeños negocios locales y no incluye tours, experiencias o servicios que están ampliamente disponibles (como servicios de taxi). No somos responsables de la calidad, legalidad o resultados de cualquier producto o servicio ofrecido por los vendedores listados."
             }
         };
 
@@ -343,6 +366,8 @@
             document.getElementById('title').textContent = translations[lang].title;
             document.getElementById('subtitleTitle').textContent = translations[lang].subtitleTitle;
             document.getElementById('subtitleText').textContent = translations[lang].subtitleText;
+            document.getElementById('disclaimerTitle').textContent = translations[lang].disclaimerTitle;
+            document.getElementById('disclaimerText').textContent = translations[lang].disclaimerText;
             
             buildCategoryFilter();
             filterVendors();
@@ -434,3 +459,4 @@
     </script>
 </body>
 </html>
+
