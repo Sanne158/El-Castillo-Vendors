@@ -55,12 +55,12 @@
         }
         
         .subtitle-text {
-    text-align: justify;
-    text-justify: inter-word;
-    max-width: 800px;
-    margin: 0 auto;
-    hyphens: auto;
-}
+            text-align: justify;
+            text-justify: inter-word;
+            max-width: 800px;
+            margin: 0 auto;
+            hyphens: auto;
+        }
         
         .filters {
             background: white;
@@ -138,27 +138,25 @@
             margin: 10px 0;
             font-size: 14px;
         }
+        
         .disclaimer {
-    background: rgba(217, 70, 239, 0.1);
-    border: 1px solid rgba(217, 70, 239, 0.3);
-    border-radius: 8px;
-    padding: 15px;
-    margin: 20px 10px;
-    font-size: 12px;
-    color: #666;
-    line-height: 1.5;
-}
-.disclaimer-title {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
+            background: rgba(217, 70, 239, 0.1);
+            border: 1px solid rgba(217, 70, 239, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 10px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .disclaimer-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
     </style>
 </head>
-<div class="disclaimer">
-    <div class="disclaimer-title" id="disclaimerTitle">Disclaimer:</div>
-    <div id="disclaimerText"></div>
-</div>
 <body>
     <h1 id="title">Crafted in El Castillo</h1>
     <div class="subtitle">
@@ -182,6 +180,11 @@
     
     <div class="count" id="count"></div>
     <div id="vendorList"></div>
+    
+    <div class="disclaimer">
+        <div class="disclaimer-title" id="disclaimerTitle"></div>
+        <div id="disclaimerText"></div>
+    </div>
 
     <script>
         let currentLang = 'en';
@@ -195,7 +198,7 @@
                 allCategories: "All Categories",
                 allSubcategories: "All Subcategories",
                 vendors: "vendors",
-                vendor: "vendor"
+                vendor: "vendor",
                 disclaimerTitle: "Disclaimer:",
                 disclaimerText: "This directory is provided as a community resource to connect residents with local micro-enterprises. We do not verify business licenses, permits, or legal compliance—that is the sole responsibility of each vendor. By using this directory, you acknowledge that all transactions are between you and the vendor directly. This platform is intended for small-scale local businesses and does not include tours, experiences, or services that are widely available (such as taxi services). We are not responsible for the quality, legality, or outcomes of any products or services offered by listed vendors."
             },
@@ -206,7 +209,7 @@
                 allCategories: "Todas las Categorías",
                 allSubcategories: "Todas las Subcategorías",
                 vendors: "vendedores",
-                vendor: "vendedor"
+                vendor: "vendedor",
                 disclaimerTitle: "Descargo de responsabilidad:",
                 disclaimerText: "Este directorio se proporciona como un recurso comunitario para conectar a los residentes con micro-empresas locales. No verificamos licencias comerciales, permisos o cumplimiento legal—esa es la responsabilidad exclusiva de cada vendedor. Al usar este directorio, usted reconoce que todas las transacciones son entre usted y el vendedor directamente. Esta plataforma está destinada a pequeños negocios locales y no incluye tours, experiencias o servicios que están ampliamente disponibles (como servicios de taxi). No somos responsables de la calidad, legalidad o resultados de cualquier producto o servicio ofrecido por los vendedores listados."
             }
@@ -218,14 +221,14 @@
                 subcategory: { en: "Diary & eggs", es: "Lácteos y huevos" },
                 product: { en: "Milk", es: "Leche" },
                 name: "Reina",
-                phone: "+506 8326 1696"
+                phone: "+506 8365 2239"
             },
             {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Diary & eggs", es: "Lácteos y huevos" },
                 product: { en: "Cheese", es: "Queso" },
                 name: "Reina",
-                phone: "+506 8326 1696"
+                phone: "+506 8365 2239"
             },
             {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
@@ -276,7 +279,7 @@
                 name: "Michael",
                 phone: "+506 8709 0777"
             },
-             {
+            {
                 category: { en: "Food & Beverages", es: "Comida y Bebidas" },
                 subcategory: { en: "Preserved & Prepared foods", es: "Alimentos Preservados y Preparados" },
                 product: { en: "Spicy sauces", es: "Salsas picantes" },
@@ -412,7 +415,6 @@
             const categoryValue = document.getElementById('categoryFilter').value;
             const subcategoryValue = document.getElementById('subcategoryFilter').value;
             
-            // If category changed, rebuild subcategory filter and reset it
             if (categoryValue !== selectedCategory) {
                 selectedCategory = categoryValue;
                 buildSubcategoryFilter(categoryValue);
@@ -420,12 +422,10 @@
             
             let filtered = vendors;
             
-            // Filter by category
             if (categoryValue !== 'all') {
                 filtered = filtered.filter(v => v.category[currentLang] === categoryValue);
             }
             
-            // Filter by subcategory
             if (subcategoryValue !== 'all' && categoryValue !== 'all') {
                 filtered = filtered.filter(v => v.subcategory[currentLang] === subcategoryValue);
             }
@@ -436,7 +436,6 @@
             document.getElementById('count').textContent = countText;
             
             document.getElementById('vendorList').innerHTML = filtered.map(v => {
-                // Format phone for WhatsApp (remove spaces and keep +)
                 const whatsappPhone = v.phone.replace(/\s/g, '');
                 
                 return `
@@ -453,10 +452,16 @@
             }).join('');
         }
 
-        // Initialize
-        buildCategoryFilter();
-        filterVendors();
+        // Initialize on page load
+        window.onload = function() {
+            document.getElementById('title').textContent = translations['en'].title;
+            document.getElementById('subtitleTitle').textContent = translations['en'].subtitleTitle;
+            document.getElementById('subtitleText').textContent = translations['en'].subtitleText;
+            document.getElementById('disclaimerTitle').textContent = translations['en'].disclaimerTitle;
+            document.getElementById('disclaimerText').textContent = translations['en'].disclaimerText;
+            buildCategoryFilter();
+            filterVendors();
+        };
     </script>
 </body>
 </html>
-
